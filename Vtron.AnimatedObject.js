@@ -17,6 +17,8 @@ if(!Vtron){ var Vtron = {}; }
 				y:0
 			}
 			
+			this.setPos(0,0); //Enable hardware accelleration
+			
 			this.scale = 1.0;
 			this.rotation = 0;
 			
