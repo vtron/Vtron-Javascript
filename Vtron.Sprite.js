@@ -1,7 +1,7 @@
 if(!Vtron){ var Vtron = {}; }
 
 (function (Vtron) {
-	Vtron.AnimatedObject = new Class({
+	Vtron.Sprite = new Class({
 		//-------------------------------------------------
 		initialize: function(element,x,y) {
 			this.element = element;
@@ -17,7 +17,7 @@ if(!Vtron){ var Vtron = {}; }
 				y:0
 			}
 			
-			this.setPos(0,0); //Enable hardware accelleration
+			this.setPos(x,y); //Enable hardware accelleration
 			
 			this.scale = 1.0;
 			this.rotation = 0;
@@ -54,15 +54,41 @@ if(!Vtron){ var Vtron = {}; }
 		
 		
 		//-------------------------------------------------
-		setPos: function(x,y,bAnimate, time) {
-			this.pos.x = x;
-			this.pos.y = y;
+		setPos: function(newX,newY,bAnimate, time) {
+			this.set({ pos:{x:newX,y:newY} },bAnimate,time);
+		},
+		
+		//-------------------------------------------------
+		setScale: function(newScale, bAnimate, time) {
+			this.set({ scale:newScale },bAnimate,time);
+		},
+		
+		
+		//-------------------------------------------------
+		setRotation:function(newRotation, bAnimate, time) {
+			this.set({ rotation:newRotation },bAnimate,time);
+		},
+		
+		
+		//-------------------------------------------------
+		set: function(options, bAnimate, time) {
+			if(options.pos && (options.pos.x != this.pos.x || options.pos.y != this.pos.y)) {
+				this.pos.x = options.pos.x;
+				this.pos.y = options.pos.y;
+			};
 			
-			if(time) {
-				this.update(bAnimate, time);
-			} else {
-				this.update(bAnimate);
+			if(options.scale && options.scale != this.scale) {
+				this.scale = options.scale;
 			}
+			
+			if(options.rotation && options.rotation != this.scale) {
+				this.rotation = options.rotatation;
+			}
+			
+			this.update(bAnimate, time);
 		}
+		
+		
+		
 	})
 })(Vtron);

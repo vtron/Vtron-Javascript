@@ -3,7 +3,7 @@ if(!Vtron){ var Vtron = {}; }
 (function (Vtron) {
 	//Generic Class to Extend and record touches on objects.
 	Vtron.TouchableObject = new Class({
-		Extends: Vtron.AnimatedObject,
+		Extends: Vtron.Sprite,
 		
 		initialize:function(el) {
 			var self = this;
